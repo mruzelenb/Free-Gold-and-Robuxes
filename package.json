@@ -1,0 +1,41 @@
+{
+  "name": "video-player-discord-recorder",
+  "version": "1.0.0",
+  "description": "Trololo",
+  "main": "index.html",
+  "scripts": {
+    "start": "echo 'Open index.html in browser'",
+    "dev": "echo 'Development mode'",
+    "build": "echo 'No build required'",
+    "test": "echo 'No tests configured'",
+    "deploy": "echo 'Deploy to GitHub Pages: git push origin main'"
+  },
+  "keywords": [
+    "video",
+    "webcam",
+    "recorder",
+    "discord",
+    "webhook"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/your-username/video-player-discord-recorder.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/video-player-discord-recorder/issues"
+  },
+  "homepage": "https://your-username.github.io/video-player-discord-recorder",
+  "dependencies": {},
+  "devDependencies": {},
+  "browserslist": [
+    "last 2 Chrome versions",
+    "last 2 Firefox versions",
+    "last 2 Edge versions",
+    "last 2 Safari versions"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
